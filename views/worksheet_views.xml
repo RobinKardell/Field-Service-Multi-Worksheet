@@ -1,30 +1,52 @@
 <odoo>
-    <record id="view_field_service_worksheet_form" model="ir.ui.view">
-        <field name="name">field.service.worksheet.form</field>
-        <field name="model">field.service.worksheet</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group>
-                        <field name="service_id"/>
-                        <field name="name"/>
-                        <field name="details"/>
-                        <field name="signature" widget="image"/>
-                        <field name="date"/>
-                    </group>
-                </sheet>
-            </form>
+    <!-- Skapa en menypost för Worksheets -->
+    <menuitem id="fieldservice_worksheet_menu"
+              name="Worksheets"
+              parent="fieldservice.field_service_management_menu"
+              action="action_fieldservice_worksheet"/>
+
+    <!-- Skapa en åtgärd som öppnar worksheet-vyn -->
+    <record id="action_fieldservice_worksheet" model="ir.actions.act_window">
+        <field name="name">Worksheets</field>
+        <field name="res_model">fieldservice.worksheet</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_fieldservice_worksheet_tree"/>
+        <field name="help" type="html">
+            <p>Hantera worksheets för field service uppdrag här.</p>
         </field>
     </record>
 
-    <record id="view_field_service_worksheet_tree" model="ir.ui.view">
-        <field name="name">field.service.worksheet.tree</field>
-        <field name="model">field.service.worksheet</field>
+    <!-- Tree-vy (lista) för worksheets -->
+    <record id="view_fieldservice_worksheet_tree" model="ir.ui.view">
+        <field name="name">fieldservice.worksheet.tree</field>
+        <field name="model">fieldservice.worksheet</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree string="Worksheets">
                 <field name="name"/>
+                <field name="service_record"/>
                 <field name="date"/>
+                <field name="signature"/>
             </tree>
+        </field>
+    </record>
+
+    <!-- Form-vy för att skapa/redigera worksheets -->
+    <record id="view_fieldservice_worksheet_form" model="ir.ui.view">
+        <field name="name">fieldservice.worksheet.form</field>
+        <field name="model">fieldservice.worksheet</field>
+        <field name="arch" type="xml">
+            <form string="Worksheet">
+                <group>
+                    <field name="name" placeholder="Ange namn på worksheet"/>
+                    <field name="service_record" placeholder="Välj serviceuppdrag"/>
+                    <field name="date" placeholder="Datum för worksheet"/>
+                    <field name="signature" widget="signature" placeholder="Skriv din signatur"/>
+                </group>
+                <footer>
+                    <button string="Save" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
         </field>
     </record>
 </odoo>
