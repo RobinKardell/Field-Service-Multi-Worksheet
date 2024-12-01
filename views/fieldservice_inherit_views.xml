@@ -1,0 +1,19 @@
+<odoo>
+    <record id="view_field_service_form_inherit" model="ir.ui.view">
+        <field name="name">field.service.form.inherit</field>
+        <field name="model">field.service</field>
+        <field name="inherit_id" ref="fieldservice.field_service_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Worksheets">
+                    <field name="worksheet_ids">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="date"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
