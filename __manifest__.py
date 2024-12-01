@@ -6,6 +6,7 @@
     'author': 'Your Name or Company',
     'depends': ['fieldservice'],
     'data': [
+        'views/worksheets_menu.xml',
         'views/worksheet_views.xml',
         'views/fieldservice_inherit_views.xml',
         'report/worksheet_report_templates.xml',
